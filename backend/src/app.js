@@ -15,7 +15,11 @@ const app = express();
 app.use(express.json()); // Parse incoming JSON requests
 app.use(express.urlencoded({ extended: true })); // Parse incoming URL-encoded requests
 app.use(cookieParser()); // Parse cookies from incoming requests
-app.use(cors()); // Enable Cross-Origin Resource Sharing (CORS)
+app.use(cors({
+    origin: ["https://entertainment-app-jade.vercel.app"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })) // Enable Cross-Origin Resource Sharing (CORS)
 
 // Routes setup
 app.use("/api/", userRouter); // Mount userRouter at /api/user
